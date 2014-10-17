@@ -6,8 +6,14 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
+		else if (text.contains(",")&& text.contains("\n")){
+			return sum(testSplitAndNewline(text));
+		}
 		else if(text.contains(",")){
 			return sum(splitNumbers(text));
+		}
+		else if(text.contains("\n")){
+			return sum(testNewLine(text));
 		}
 		else
 			return 1;
@@ -16,7 +22,12 @@ public class Calculator {
 	private static int toInt(String number){
 		return Integer.parseInt(number);
 	}
-
+	private static String[] testNewLine(String numbers){
+	    return numbers.split("\n");
+	}
+	private static String[] testSplitAndNewline(String numbers){
+	    return numbers.split("\n|\\,");
+	}
 	private static String[] splitNumbers(String numbers){
 	    return numbers.split(",");
 	}
